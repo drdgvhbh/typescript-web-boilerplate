@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "esnext",
+    "sourceMap": true,
+    "jsx": "react",
+    "noImplicitAny": true,
+    "removeComments": true,
+    "experimentalDecorators": true,
+  },
+  "include": ["./src/**/**/*"],
+  "exclude": ["node_modules", "dist"]
+}
