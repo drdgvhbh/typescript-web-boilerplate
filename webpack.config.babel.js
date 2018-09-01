@@ -40,7 +40,6 @@ const commonConfig = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/app/index.html'),
     }),
-    new HardSourceWebpackPlugin(),
   ],
 };
 
@@ -62,6 +61,7 @@ const devConfig = merge(commonConfig, {
     removeEmptyChunks: false,
     splitChunks: false,
   },
+  plugins: [new HardSourceWebpackPlugin()],
 });
 
 const prodConfig = merge(commonConfig, {});

@@ -4,9 +4,10 @@
   "description": "web boilerplate",
   "main": "index.js",
   "scripts": {
-    "dev": "run-s clean build-server && cross-env DEBUG=info run-p start dev-server",
+    "dev": "run-s clean build-server && cross-env DEBUG=info run-p express-server dev-server",
     "dev-server": "webpack-dev-server --mode development --hot",
-    "start": "node dist/api/server.js",
+    "express-server": "node dist/api/server.js",
+    "start": "run-s build express-server",
     "build-server": "cd src/api && tsc --outDir ../../dist/api",
     "build": "npm run clean && webpack --mode production && npm run build-server",
     "clean": "rimraf dist",
