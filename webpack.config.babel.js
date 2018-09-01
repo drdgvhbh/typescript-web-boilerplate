@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 const merge = require('webpack-merge');
+import UglifyJsPlugin from 'uglifyjs-webpack-plugin';
 
 const commonConfig = {
   entry: {
@@ -64,7 +65,11 @@ const devConfig = merge(commonConfig, {
   plugins: [new HardSourceWebpackPlugin()],
 });
 
-const prodConfig = merge(commonConfig, {});
+const prodConfig = merge(commonConfig, {
+  optimization: {
+    minimizer: [new UglifyJsPlugin()],
+  },
+});
 
 let config = devConfig;
 if (process.env.NODE_ENV === 'production') {
