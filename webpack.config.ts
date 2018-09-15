@@ -1,14 +1,17 @@
 import ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 import HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 import HtmlWebpackPlugin = require('html-webpack-plugin');
+import MiniCssExtractPlugin = require('mini-css-extract-plugin');
 import * as path from 'path';
 import * as webpack from 'webpack';
 import merge = require('webpack-merge');
 
+const isDevelopment = process.env.NODE_ENV === 'development';
+
 const commonConfig: webpack.Configuration = {
   entry: {
     app: [path.join(__dirname, 'src/app/index.tsx')],
-    vendor: ['react', 'react-dom', 'redux'],
+    vendor: ['react', 'react-dom', 'mobx', 'mobx-react'],
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -32,6 +35,15 @@ const commonConfig: webpack.Configuration = {
           },
         },
       },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'css-loader',
+          'postcss-loader',
+          'sass-loader',
+        ],
+      },
     ],
   },
   plugins: [
@@ -39,6 +51,7 @@ const commonConfig: webpack.Configuration = {
     new HtmlWebpackPlugin({
       template: path.join(__dirname, 'src/app/index.html'),
     }),
+    new MiniCssExtractPlugin(),
   ],
 };
 
@@ -62,7 +75,7 @@ const devConfig = merge(commonConfig, {
 });
 
 let config = commonConfig;
-if (process.env.NODE_ENV === 'development') {
+if (isDevelopment) {
   config = devConfig;
 }
 
