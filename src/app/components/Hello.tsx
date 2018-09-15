@@ -8,10 +8,12 @@ interface IProps {
 export class Hello extends React.Component<IProps, {}> {
   public render() {
     return (
-      <h1>
-        This is a {this.props.framework} through using {this.props.compiler}{' '}
-        with {this.props.bundler}
-      </h1>
+      <div>
+        <h1>
+          This is a {this.props.framework} using {this.props.compiler} with{' '}
+          {this.props.bundler}
+        </h1>
+      </div>
     );
   }
 }
