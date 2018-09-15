@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { hot } from 'react-hot-loader';
-import { Hello } from './components/Hello';
+import { BrowserRouter } from 'react-router-dom';
+import { Router } from './routes';
 
 const App = () => (
-  <Hello compiler="Typescript" framework="React" bundler="Webpack" />
+  <BrowserRouter>
+    <Router />
+  </BrowserRouter>
 );
 export default hot(module)(App);

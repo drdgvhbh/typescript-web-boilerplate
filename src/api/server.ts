@@ -25,10 +25,10 @@ if (process.env.NODE_ENV === 'development') {
     }),
   );
   app.use(webpackHotMiddleware(compiler));
+} else if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(outputPath!));
 }
-
 app.use(express.static('public'));
-app.use(express.static(outputPath!));
 
 app.get('*', (req, res) =>
   res.sendFile(path.resolve(outputPath!, 'index.html')),

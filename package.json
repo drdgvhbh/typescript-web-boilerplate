@@ -15,7 +15,9 @@
   "author": "",
   "license": "ISC",
   "nodemonConfig": {
-    "watch": ["src/api"],
+    "watch": [
+      "src/api"
+    ],
     "ext": "ts",
     "exec": "ts-node ./src/api/server.ts"
   },
@@ -38,6 +40,8 @@
     "@types/react": "^16.4.13",
     "@types/react-dom": "^16.0.7",
     "@types/react-hot-loader": "^4.1.0",
+    "@types/react-router": "^4.0.31",
+    "@types/react-router-dom": "^4.3.1",
     "@types/uglifyjs-webpack-plugin": "^1.1.0",
     "@types/webpack": "^4.4.11",
     "@types/webpack-dev-middleware": "^2.0.2",
@@ -74,6 +78,8 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-hot-loader": "^4.3.5",
+    "react-router": "^4.3.1",
+    "react-router-dom": "^4.3.1",
     "redux": "^4.0.0",
     "webpack": "^4.17.1",
     "webpack-dev-middleware": "^3.3.0",
