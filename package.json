@@ -6,8 +6,10 @@
   "scripts": {
     "dev": "run-s clean && cross-env DEBUG=info NODE_ENV=development npm run dev-server",
     "dev-server": "nodemon",
-    "start": "cross-env NODE_ENV=production ts-node ./src/api/server.ts",
-    "clean": "rimraf webpack.config.js && rimraf dist",
+    "server": "ts-node ./src/api/server.ts",
+    "build": "webpack -p",
+    "start": "cross-env DEBUG=info run-s clean build server",
+    "clean": "rimraf dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

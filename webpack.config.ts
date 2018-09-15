@@ -7,18 +7,8 @@ import merge = require('webpack-merge');
 
 const commonConfig: webpack.Configuration = {
   entry: {
-    app: [
-      'react-hot-loader/patch',
-      path.join(__dirname, 'src/app/index.tsx'),
-      'webpack-hot-middleware/client',
-    ],
-    vendor: [
-      'react-hot-loader/patch',
-      'react',
-      'react-dom',
-      'redux',
-      'webpack-hot-middleware/client',
-    ],
+    app: [path.join(__dirname, 'src/app/index.tsx')],
+    vendor: ['react', 'react-dom', 'redux'],
   },
   output: {
     path: path.join(__dirname, 'dist'),
@@ -54,6 +44,9 @@ const commonConfig: webpack.Configuration = {
 
 const devConfig = merge(commonConfig, {
   mode: 'development',
+  entry: {
+    app: ['react-hot-loader/patch', 'webpack-hot-middleware/client'],
+  },
   output: {
     pathinfo: false,
   },
@@ -71,9 +64,6 @@ const devConfig = merge(commonConfig, {
 let config = commonConfig;
 if (process.env.NODE_ENV === 'development') {
   config = devConfig;
-} else {
-  const productionConfig = { mode: 'production' as 'production', ...config };
-  config = productionConfig;
 }
 
 export default config;
