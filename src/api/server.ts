@@ -29,10 +29,15 @@ if (process.env.NODE_ENV === 'development') {
   app.use(express.static(outputPath!));
 }
 app.use(express.static('public'));
+app.use(express.static(publicPath!));
 
-app.get('*', (req, res) =>
-  res.sendFile(path.resolve(outputPath!, 'index.html')),
-);
+if (process.env.NODE_ENV === 'development') {
+  app.get('*', (req, res) => res.sendFile(path.resolve(publicPath!)));
+} else {
+  app.get('/*', (req, res) => {
+    res.sendFile(path.resolve(outputPath!, 'index.html'));
+  });
+}
 
 app.listen(port, () =>
   debug('info')(`Server is running on port http://localhost:${port}/`),
