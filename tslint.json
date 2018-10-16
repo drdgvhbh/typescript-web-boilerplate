@@ -11,5 +11,9 @@
     "jsx-boolean-value": ["never"],
     "ordered-imports": false,
     "interface-name": false,
+    "semicolon": true,
+    "no-submodule-imports": false,
+    "jsx-no-lambda": false,
+    "max-classes-per-file": false
   }
 }
